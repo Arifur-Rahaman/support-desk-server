@@ -3,6 +3,7 @@ import authService from './authService'
 
 //Get user from localstroge
 const user = JSON.parse(localStorage.getItem('user'))
+
 const initialState = {
     user: user? user: null,
     isError: false,
@@ -65,6 +66,8 @@ export const authSlice = createSlice({
                 state.message = action.payload
                 state.user = null
             })
+
+            
             .addCase(signin.pending, (state) => {
                 state.isLoading = true
             })

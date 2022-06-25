@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { toast } from 'react-toastify';
 import {MainButton} from '../shared/Button'
-import { register, signin } from '../features/authSlice';
+import { register, signin } from '../features/auth/authSlice';
 
 
 const AuthForm = ({ state }) => {

@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 import AuthForm from '../components/AuthForm'
 import { HeadingPrimary, HeadingSecondary } from '../shared/Heading';
-import { reset } from '../features/authSlice';
+import { reset } from '../features/auth/authSlice';
 
 const Login = () => {
     const dispatch = useDispatch()

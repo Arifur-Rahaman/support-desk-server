@@ -50,7 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
 //@access Public
 const signinUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body
-    const user = await User.findOne({email})
+    const user = await User.findOne({email}) 
 
     //Check the user is exist or not and if exits then compare the password of user and db
     if(user && (await bcrypt.compare(password, user.password))){

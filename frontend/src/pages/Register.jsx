@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import { toast } from 'react-toastify';
 
 import AuthForm from '../components/AuthForm'
-import { reset } from '../features/authSlice';
+import { reset } from '../features/auth/authSlice';
 import { HeadingPrimary, HeadingSecondary } from '../shared/Heading';
 
 const Register = () => {

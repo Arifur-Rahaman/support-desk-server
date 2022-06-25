@@ -12,7 +12,7 @@ import {
     Typography,
     Button
 } from '@mui/material'
-import { logout, reset } from '../features/authSlice';
+import { logout, reset } from '../features/auth/authSlice';
 
 const Header = () => {
     const dispatch = useDispatch()
