@@ -9,6 +9,9 @@ const Home = () => {
     const handleNewTicketClick = ()=>{
         navigate('new-ticket')
     }
+    const viewTickets = ()=>{
+        navigate('tickets')
+    }
     return (
         <Container maxWidth='xs'>
             <HeadingPrimary align='center' variant='h4' component='h1'>What do you need help with?</HeadingPrimary>
@@ -25,7 +28,7 @@ const Home = () => {
             >
                 Create Ticket
             </Button>
-            <MainButton>View My Tickets</MainButton>
+            <MainButton onClick={viewTickets}>View My Tickets</MainButton>
         </Container>
     );
 };

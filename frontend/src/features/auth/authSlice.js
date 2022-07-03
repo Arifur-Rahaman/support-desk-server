@@ -88,6 +88,8 @@ export const authSlice = createSlice({
                 state.user = null
             })
 
+            
+
     }
 })
 export const {reset} = authSlice.actions
