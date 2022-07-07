@@ -2,10 +2,9 @@ import React from 'react';
 import { FaSignInAlt, FaUser, FaSignOutAlt } from 'react-icons/fa'
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate, Link } from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
-    Box,
     Toolbar,
     AppBar,
     IconButton,
@@ -16,7 +15,7 @@ import { logout, reset } from '../features/auth/authSlice';
 
 const Header = () => {
     const dispatch = useDispatch()
-    const {user} = useSelector((store)=>store.auth)
+    const { user } = useSelector((store) => store.auth)
     const navigate = useNavigate()
 
     const handleLoginClick = () => {
@@ -27,13 +26,19 @@ const Header = () => {
         navigate('/register')
     }
 
-    const handleSignout = ()=>{
+    const handleSignout = () => {
         dispatch(logout())
         dispatch(reset())
     }
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" color='transparent' sx={{ color: '#333' }}>
+        <>
+            <AppBar
+                position="fixed"
+                sx={{
+                    color: '#333',
+                    backgroundColor: 'white',
+                }}
+            >
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -68,7 +73,8 @@ const Header = () => {
                     }
                 </Toolbar>
             </AppBar >
-        </Box >
+            <Toolbar />
+        </>
     );
 };
 

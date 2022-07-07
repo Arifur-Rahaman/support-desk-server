@@ -6,10 +6,15 @@ import { closeTicket, getTicket } from '../features/tickets/ticketSlice';
 import { toast } from 'react-toastify'
 import { Button, CircularProgress, Paper, Stack, Typography } from '@mui/material'
 import { Container } from '@mui/system';
+import {getNotes, reset as noteReset} from '../features/notes/notesSlice'
+import NoteItem from '../components/NoteItem';
+import NoteModal from '../components/NoteModal';
 
 const Ticket = () => {
     const { ticketId } = useParams()
     const { isError, isLoading, message, ticket } = useSelector(state => state.tickets)
+    const {isLoading: isNotesLoading, notes } = useSelector(state => state.notes)
+    
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -24,9 +29,11 @@ const Ticket = () => {
             toast.error(message)
         }
         dispatch(getTicket(ticketId))
+        dispatch(getNotes(ticketId))
     }, [isError, dispatch, message, ticketId])
 
-    if (isLoading) {
+
+    if (isLoading || isNotesLoading) {
         return (
             <Stack justifyContent='center' alignItems='center'>
                 <CircularProgress />
@@ -77,6 +84,14 @@ const Ticket = () => {
                     {ticket.description}
                 </Typography>
             </Paper>
+            <Typography variant='h6' sx={{ fontWeight: '600', mb: '0.25rem' }}>Notes</Typography>
+            {ticket.status !== 'closed' &&<NoteModal ticketId={ticketId}/>}
+            
+            {
+                notes.map((note)=>(
+                    <NoteItem key={note._id} note={note} />
+                ))
+            }
             {
                 ticket.status !== 'closed' && (
                     <Button

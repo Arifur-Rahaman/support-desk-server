@@ -1,14 +1,14 @@
 import { Container } from '@mui/system';
 import React from 'react';
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Typography, Box, TextField, Select, MenuItem, InputLabel, FormControl } from '@mui/material'
+import { Grid, Typography, Box, TextField, Select, MenuItem, InputLabel, FormControl, Button } from '@mui/material'
 import { useEffect } from 'react';
 import { createTicket, reset } from '../features/tickets/ticketSlice';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 const NewTicket = () => {
-    const {isError, isSuccess, isLoading, message} = useSelector(state=>state.tickets)
+    const { isError, isSuccess, isLoading, message } = useSelector(state => state.tickets)
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -18,11 +18,11 @@ const NewTicket = () => {
     const [product, setProduct] = useState('')
     const [description, setDescription] = useState('')
 
-    useEffect(()=>{
-        if(isError){
+    useEffect(() => {
+        if (isError) {
             toast.error(message)
         }
-        if(isSuccess){
+        if (isSuccess) {
             dispatch(reset())
             navigate('/tickets')
         }
@@ -30,13 +30,13 @@ const NewTicket = () => {
     }, [dispatch, navigate, isError, isLoading, isSuccess, message])
     const onSubmit = (e) => {
         e.preventDefault()
-        dispatch(createTicket({product, description}))
+        dispatch(createTicket({ product, description }))
     }
-    if(isLoading){
-        return <h1 style={{textAlign: 'center'}}>Loading...........</h1>
+    if (isLoading) {
+        return <h1 style={{ textAlign: 'center' }}>Loading...........</h1>
     }
     return (
-        <Container maxWidth='xs'>
+        <Container>
             <Typography variant='h6' align='center' component='p' sx={{ mb: '1rem' }}>Create new ticket</Typography>
             <Box component='form' onSubmit={onSubmit}>
                 <Grid container rowSpacing='1rem'>
@@ -69,11 +69,25 @@ const NewTicket = () => {
                             fullWidth label='Description'
                             size='small'
                             value={description}
-                            onChange={(e) => setDescription(e.target.value)} 
+                            onChange={(e) => setDescription(e.target.value)}
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <TextField fullWidth value='Create' type='submit' size='small' />
+                        <Button
+                            fullWidth
+                            type='submit'
+                            size='small'
+                            variant='contained'
+                            disableRipple
+                            sx={{
+                                backgroundColor: '#333',
+                                '&:hover':{
+                                    backgroundColor: '#444'
+                                }
+                            }}
+                        >
+                            Create
+                        </Button>
                     </Grid>
                 </Grid>
 

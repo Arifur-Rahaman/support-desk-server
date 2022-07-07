@@ -80,7 +80,7 @@ export const closeTicket = createAsyncThunk(
 
 
 export const ticketSlice = createSlice({
-    name: 'tickte',
+    name: 'ticket',
     initialState,
     reducers: {
         reset: (state) => initialState

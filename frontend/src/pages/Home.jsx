@@ -1,4 +1,5 @@
-import { Button, Container } from '@mui/material';
+import { Button, Container, Stack } from '@mui/material';
+import { Box } from '@mui/system';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MainButton } from '../shared/Button';
