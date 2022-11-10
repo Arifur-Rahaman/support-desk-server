@@ -28,10 +28,12 @@ const NewTicket = () => {
         }
         dispatch(reset())
     }, [dispatch, navigate, isError, isLoading, isSuccess, message])
+
     const onSubmit = (e) => {
         e.preventDefault()
         dispatch(createTicket({ product, description }))
     }
+    
     if (isLoading) {
         return <h1 style={{ textAlign: 'center' }}>Loading...........</h1>
     }

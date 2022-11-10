@@ -14,7 +14,10 @@ const Ticket = () => {
     const { ticketId } = useParams()
     const { isError, isLoading, message, ticket } = useSelector(state => state.tickets)
     const {isLoading: isNotesLoading, notes } = useSelector(state => state.notes)
-    
+
+    const ticket1 = {...useSelector(state => state.tickets.ticket)}
+    ticket1.xyz = 'xyz'
+    console.log(ticket1)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 

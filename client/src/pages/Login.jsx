@@ -19,7 +19,7 @@ const Login = () => {
         }
 
         //Redirect when login
-        if(isSuccess || user){
+        if(isSuccess || user){ 
             navigate('/')
         }
         dispatch(reset())
