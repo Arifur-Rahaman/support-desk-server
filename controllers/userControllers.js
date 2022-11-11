@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler")
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
+const sendEmail = require('./../utils/email')
 
 //@des Register new user
 //@route /api/users/register
@@ -80,12 +81,34 @@ const getMe = asyncHandler( async (req, res)=>{
     res.status(200).json(user)
 })
 
+
+//@desc send email
+//@route /api/users/sendemail
+//@access still not setup
+const sendMessage = asyncHandler(async(req, res)=>{
+    try {
+        await sendEmail({
+           email: 'arifur15-2111@diu.edu.bd',
+           subject: 'Just a message',
+           message: 'Just a message' 
+        })
+        res.status(200).json({message: 'sent successfully'})
+    } catch (error) {
+        res.status(401)
+        throw new Error(error)
+        
+    }
+})
+
 const generateToken = (id)=>{
     return jwt.sign({id}, process.env.JWT_SECRET, {expiresIn:'30d'})
 }
 
+
+
 module.exports = {
     registerUser,
     signinUser,
-    getMe
+    getMe,
+    sendMessage,
 }
